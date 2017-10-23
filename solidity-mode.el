@@ -417,7 +417,7 @@ Highlight the 1st result."
   "Syntax table for the solidity language.")
 
 ;;;###autoload
-(define-derived-mode solidity-test-mode js-mode "solidity"
+(define-derived-mode solidity-mode js-mode "solidity"
   "Major mode for editing solidity language buffers."
   (set-syntax-table solidity-mode-syntax-table)
   ;; specify syntax highlighting
