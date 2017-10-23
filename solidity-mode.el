@@ -29,7 +29,8 @@
 
 ;;; Code:
 
-(require 'cc-mode)
+(require 'js)
+;;(require 'cc-mode)
 
 
 ;;; --- Customizable variables ---
@@ -416,31 +417,26 @@ Highlight the 1st result."
   "Syntax table for the solidity language.")
 
 ;;;###autoload
-(define-derived-mode solidity-mode c-mode "solidity"
+(define-derived-mode solidity-test-mode js-mode "solidity"
   "Major mode for editing solidity language buffers."
   (set-syntax-table solidity-mode-syntax-table)
   ;; specify syntax highlighting
   (setq font-lock-defaults '(solidity-font-lock-keywords))
-  ;; register indentation functions, basically the c-mode ones
+  ;; register indentation functions, basically the javascript-mode ones
   (make-local-variable 'comment-start)
   (make-local-variable 'comment-end)
   (make-local-variable 'comment-start-skip)
 
-  (make-local-variable 'paragraph-start)
+  (make-local-variable 'paragraphl-start)
   (make-local-variable 'paragraph-separate)
   (make-local-variable 'paragraph-ignore-fill-prefix)
   (make-local-variable 'adaptive-fill-mode)
   (make-local-variable 'adaptive-fill-regexp)
   (make-local-variable 'fill-paragraph-handle-comment)
 
-  ;; now set their values
+  ;; ;; now set their values
   (set (make-local-variable 'parse-sexp-ignore-comments) t)
-  (set (make-local-variable 'indent-line-function) 'c-indent-line)
-  (set (make-local-variable 'indent-region-function) 'c-indent-region)
-  (set (make-local-variable 'normal-auto-fill-function) 'c-do-auto-fill)
-  (set (make-local-variable 'comment-multi-line) t)
-  (set (make-local-variable 'comment-line-break-function)
-       'c-indent-new-comment-line)
+  (set (make-local-variable 'comment-multi-line) nil)
   (run-hooks 'solidity-mode-hook))
 
 ;;; --- interface with flycheck if existing ---
